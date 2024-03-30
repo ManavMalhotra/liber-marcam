@@ -170,7 +170,7 @@ export default function Navbar() {
                   name="addTag"
                   type="text"
                   className="block w-full rounded-md border-2 border-slate-200 bg-white p-2 py-1 text-sm text-slate-900 placeholder-slate-300 focus:border-slate-300 focus:ring-slate-300"
-                  value=""
+                  value={currentCategory}
                   onChange={(e) => {
                     setCurrentCategory(e.target.value);
                   }}

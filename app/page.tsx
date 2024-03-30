@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "@/components/Navbar";
 
 import Table from "@/components/Table";
 export default function Home() {
