@@ -1,7 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { MdArrowForwardIos, MdClose, MdSave } from "react-icons/md";
+import useBookmarkStore from "@/bookmarkStore";
+import Image from "next/image";
+import Logo from "@/public/logo.png";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isTagsVisible, setIsTagsVisible] = useState(false);
@@ -13,14 +17,31 @@ export default function Navbar() {
   const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
   const [isInputCategoryVisible, setIsInputCategoryVisible] = useState(false);
 
-  const [tags, setTags] = useState(["tag1", "tag2", "tag3", "tag4", "tag5"]);
-  const [categories, setCategories] = useState([
-    "category1",
-    "category2",
-    "category3",
-    "category4",
-    "category5",
-  ]);
+  const { bookmarks, addBookmark, removeBookmark, updateBookmark } =
+    useBookmarkStore();
+  const [tags, setTags] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    bookmarks.map((bookmark) => {
+      if (bookmark.tags) {
+        bookmark.tags.map((tag) => {
+          if (!tags.includes(tag)) {
+            setTags((prevTags) => [...prevTags, tag]);
+          }
+        });
+      }
+
+      if (bookmark.category) {
+        bookmark.category.map((category) => {
+          if (!categories.includes(category)) {
+            setCategories((prevCategories) => [...prevCategories, category]);
+          }
+        });
+      }
+    });
+  }, [bookmarks, tags, categories]);
+
   const showTags = () => {
     setIsTagsVisible(!isTagsVisible);
   };
@@ -37,6 +58,10 @@ export default function Navbar() {
 
   return (
     <nav>
+      <Link href="/">
+        <Image src={Logo} alt="Logo" className="mx-auto h-auto" />
+      </Link>
+
       <ul
         className="flex flex-col justify-center w-full h-full text-white 
         p-4 space-y-4 bg-black px-8"
@@ -70,7 +95,7 @@ export default function Navbar() {
               >
                 <MdArrowForwardIos
                   className={`h-5 w-5 transition duration-200 ease-in-out rotate-90  ${
-                    isTagsVisible ? "rotate-90" : "rotate-0"
+                    isTagsVisible ? "-rotate-90" : "rotate-0"
                   }`}
                 />
               </button>
@@ -141,7 +166,7 @@ export default function Navbar() {
               >
                 <MdArrowForwardIos
                   className={`h-5 w-5 transition duration-200 ease-in-out rotate-90  ${
-                    isCategoriesVisible ? "rotate-90" : "rotate-0"
+                    isCategoriesVisible ? "-rotate-90" : "rotate-0"
                   }`}
                 />
               </button>
