@@ -28,6 +28,8 @@ We welcome contributions to improve the AI Bookmarker Tracker. Please read our c
 
 Watch a full demo of the AI Bookmarker Tracker [here](https://drive.google.com/file/d/1qphApRjTwYLNBhMg31b8L_yNcsiDXBge/view?usp=sharing).
 
+https://github.com/ManavMalhotra/liber-marcam/assets/64147782/bbfe13bb-2f88-4d2a-9344-90746a85e962
+
 We are constantly working to enhance the AI Bookmarker Tracker. Stay tuned for updates on the Chrome extension and additional features. Thank you for choosing AI Bookmarker Tracker for your bookmark management needs!
 
 ## Additional Resources
