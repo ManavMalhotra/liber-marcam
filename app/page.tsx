@@ -61,6 +61,7 @@ export default function Page() {
 
         // set bookmarks
         data.forEach((bookmark: Bookmark) => {
+          // @ts-ignore
           addBookmark(bookmark);
         });
       };
@@ -85,6 +86,7 @@ export default function Page() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          // @ts-ignore
           Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify(data),

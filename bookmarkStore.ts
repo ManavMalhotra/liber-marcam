@@ -1,7 +1,7 @@
 import create from "zustand";
 
 interface Bookmark {
-  id: string;
+  _id: number;
   url: string;
   title: string;
   description: string;
@@ -30,13 +30,13 @@ const useBookmarkStore = create<BookmarkStore>((set) => ({
 
   removeBookmark: (bookmarkId) =>
     set((state) => ({
-      bookmarks: state.bookmarks.filter((b) => b.id !== bookmarkId),
+      bookmarks: state.bookmarks.filter((b) => b._id !== bookmarkId),
     })),
 
   updateBookmark: (bookmarkId, updatedFields) =>
     set((state) => ({
       bookmarks: state.bookmarks.map((b) =>
-        b.id === bookmarkId ? { ...b, ...updatedFields } : b
+        b._id === bookmarkId ? { ...b, ...updatedFields } : b
       ),
     })),
 }));

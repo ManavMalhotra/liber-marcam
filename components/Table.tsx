@@ -43,14 +43,15 @@ export default function BookmarkTableLayout() {
   //   },
   // ];
 
-  async function handleRemoveBookmark(bookmarkId: string) {
-    console.log("Bookmark ID: ", Number(bookmarkId));
+  async function handleRemoveBookmark(bookmarkId: number) {
+    console.log("Bookmark ID: ", bookmarkId);
     try {
       const response = await fetch(
         `https://liber-marcam-backend.onrender.com/api/bookmarks/${bookmarkId}`,
         {
           method: "DELETE",
           headers: {
+            // @ts-ignore
             Authorization: `Bearer ${user.token}`,
           },
         }
@@ -86,7 +87,7 @@ export default function BookmarkTableLayout() {
         </TableHeader>
         <TableBody>
           {bookmarks.map((bookmark) => (
-            <TableRow key={bookmark.id}>
+            <TableRow key={bookmark._id}>
               <TableCell className="font-medium">{bookmark.title}</TableCell>
               <TableCell>{bookmark.url}</TableCell>
               <TableCell className="">{bookmark.description}</TableCell>

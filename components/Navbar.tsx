@@ -81,16 +81,16 @@ export default function Navbar() {
           <div className="mb-2 flex items-center justify-between space-x-2 px-4 pt-4 font-medium text-neutral-200">
             <div className="flex items-center justify-start">
               <h2 className="font-serif text-lg text-slate-200">Tags</h2>
-              <button
-                className="ml-1 hidden flex-1 justify-end rounded-md outline-none hover:cursor-pointer focus:ring-2 focus:ring-slate-200 lg:flex"
+              <div
+                className="cursor-pointer ml-1 hidden flex-1 justify-end rounded-md outline-none hover:cursor-pointer focus:ring-2 focus:ring-slate-200 lg:flex"
                 onClick={showInputTag}
               >
                 <FaPlus className="h-3 w-3 text-slate-300" />
-              </button>
+              </div>
             </div>
             <div className="flex items-center">
-              <button
-                className="rounded-lg outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900 "
+              <div
+                className="cursor-pointer rounded-lg outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900 "
                 onClick={showTags}
               >
                 <MdArrowForwardIos
@@ -98,7 +98,7 @@ export default function Navbar() {
                     isTagsVisible ? "-rotate-90" : "rotate-0"
                   }`}
                 />
-              </button>
+              </div>
             </div>
           </div>
           <ul className="overflow-hidden">
@@ -135,12 +135,12 @@ export default function Navbar() {
                     setCurrentTag(e.target.value);
                   }}
                 />
-                <button className="grid place-items-center rounded-md p-1 outline-none focus:ring-2 focus:ring-slate-200">
+                <div className="cursor-pointer grid place-items-center rounded-md p-1 outline-none focus:ring-2 focus:ring-slate-200">
                   <MdSave className="h-6 w-6 text-slate-600" />
-                </button>
-                <button className="grid place-items-center rounded-md p-1 outline-none focus:ring-2 focus:ring-slate-200">
+                </div>
+                <div className="cursor-pointer grid place-items-center rounded-md p-1 outline-none focus:ring-2 focus:ring-slate-200">
                   <MdClose className="h-6 w-6 text-rose-400" />
-                </button>
+                </div>
               </div>
             </div>
           </ul>
@@ -151,17 +151,17 @@ export default function Navbar() {
           <div className="mb-2 flex items-center justify-between space-x-2 px-4 pt-4 font-medium text-neutral-200">
             <div className="flex items-center justify-start">
               <h2 className="font-serif text-lg text-slate-200">Category</h2>
-              <button
-                className="ml-1 hidden flex-1 justify-end rounded-md outline-none hover:cursor-pointer focus:ring-2 focus:ring-slate-200 lg:flex"
+              <div
+                className="cursor-pointer ml-1 hidden flex-1 justify-end rounded-md outline-none hover:cursor-pointer focus:ring-2 focus:ring-slate-200 lg:flex"
                 onClick={showInputCategory}
               >
                 {/* Add svg */}
                 <FaPlus className="h-3 w-3 text-slate-300" />
-              </button>
+              </div>
             </div>
             <div className="flex items-center">
-              <button
-                className="rounded-lg outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900 "
+              <div
+                className=" cursor-pointerrounded-lg outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900 "
                 onClick={showCategories}
               >
                 <MdArrowForwardIos
@@ -169,7 +169,7 @@ export default function Navbar() {
                     isCategoriesVisible ? "-rotate-90" : "rotate-0"
                   }`}
                 />
-              </button>
+              </div>
             </div>
           </div>
           <ul className=" overflow-hidden">
@@ -200,12 +200,13 @@ export default function Navbar() {
                     setCurrentCategory(e.target.value);
                   }}
                 />
-                <button className="grid place-items-center rounded-md p-1 outline-none focus:ring-2 focus:ring-slate-200">
+
+                <div className="grid place-items-center rounded-md p-1 outline-none focus:ring-2 focus:ring-slate-200 cursor-pointer">
                   <MdSave className="h-6 w-6 text-slate-600" />
-                </button>
-                <button className="grid place-items-center rounded-md p-1 outline-none focus:ring-2 focus:ring-slate-200">
+                </div>
+                <div className="grid place-items-center rounded-md p-1 outline-none focus:ring-2 focus:ring-slate-200 cursor-pointer">
                   <MdClose className="h-6 w-6 text-rose-400" />
-                </button>
+                </div>
               </div>
             </div>
           </ul>
