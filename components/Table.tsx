@@ -12,6 +12,7 @@ import {
 import useStore from "@/bookmarkStore";
 import useBookmarkStore from "@/bookmarkStore";
 import useUserStore from "@/userStore";
+import { MdDelete } from "react-icons/md";
 
 export default function BookmarkTableLayout() {
   const { bookmarks, addBookmark, removeBookmark, updateBookmark } =
@@ -112,12 +113,10 @@ export default function BookmarkTableLayout() {
                 {new Date(bookmark.timeStamps).toLocaleDateString()}
               </TableCell>
               <TableCell>
-                <button
+                <MdDelete
                   onClick={() => handleRemoveBookmark(bookmark._id)}
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                >
-                  Delete
-                </button>
+                />
               </TableCell>
             </TableRow>
           ))}

@@ -69,7 +69,7 @@ export default function Page() {
       console.log(user.token);
       fetchBookmarks();
     }
-  }, []);
+  }, [bookmarks]);
 
   const handleAddBookmark = () => {
     const data = {

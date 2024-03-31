@@ -1,14 +1,18 @@
 "use client";
 import useUserStore from "@/userStore";
+import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function login() {
+export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  
   const { user, setUser } = useUserStore();
-
-  const handleSignIn = async () => {
+  const router = useRouter();
+  
+  const handleLogin = async () => {
+    
     const data = JSON.stringify({
       email,
       password,
@@ -29,6 +33,7 @@ export default function login() {
 
         // update the user store
         setUser(data);
+        redirect("/");
       })
       .catch((error) => {
         console.error("Error sending magic link:", error);
@@ -37,7 +42,7 @@ export default function login() {
 
   return (
     <div>
-      <h1>Sigin</h1>
+      <h1>Login</h1>
       <input
         type="email"
         placeholder="Email"
@@ -51,7 +56,7 @@ export default function login() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <br />
-      <button onClick={handleSignIn}>Login</button>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }
