@@ -16,10 +16,10 @@ interface UserStore {
 const useUserStore = create<UserStore>((set) => {
   let initialUser = null;
 
-  if (typeof window !== "undefined") {
-    const storedUser = localStorage.getItem("user");
-    initialUser = storedUser ? JSON.parse(storedUser) : null;
-  }
+  // if (typeof window !== "undefined") {
+  //   const storedUser = localStorage.getItem("user");
+  //   initialUser = storedUser ? JSON.parse(storedUser) : null;
+  // }
 
   return {
     user: initialUser,

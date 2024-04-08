@@ -4,17 +4,30 @@ import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
+const Alert = () => {
+  return (
+    <div
+      className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+      role="alert"
+    >
+      <span className="block sm:inline">
+        Email or password is incorrect. Please try again.
+      </span>
+    </div>
+  );
+};
+
 const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<boolean | null>(null);
 
   const { user, setUser } = useUserStore();
   const router = useRouter();
 
   const handleLogin = async () => {
     console.log("Logging in...");
-    console.table({ email, password });
     const data = JSON.stringify({
       email,
       password,
@@ -26,15 +39,27 @@ const Page = () => {
       },
       body: data,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        // response.json();
+        if (response.status === 200) {
+          console.log("Login successful");
+          setError(false);
+          return response.json();
+        } else {
+          console.log("Login failed");
+          setError(true);
+        }
+      })
       .then((data) => {
+        console.table({ email, password });
         console.log(data);
 
         localStorage.setItem("user", JSON.stringify(data));
 
         // update the user store
         setUser(data);
-        // redirect("/");
+
+        router.push("/");
       })
       .catch((error) => {
         console.error("Error sending magic link:", error);
@@ -43,6 +68,7 @@ const Page = () => {
 
   return (
     <div className="w-full h-100">
+      {error && <Alert />}
       <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
         Log in to your account
       </h1>
