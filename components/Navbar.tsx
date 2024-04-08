@@ -1,7 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import { MdArrowForwardIos, MdClose, MdSave } from "react-icons/md";
+import {
+  MdArrowForwardIos,
+  MdClose,
+  MdSave,
+  MdOutlinePerson2,
+} from "react-icons/md";
 import useBookmarkStore from "@/bookmarkStore";
 import Image from "next/image";
 import Logo from "@/public/logo.png";
@@ -21,6 +26,7 @@ export default function Navbar() {
     useBookmarkStore();
   const [tags, setTags] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
+  const [isProfileMenuVisible, setIsProfileMenuVisible] = useState(false);
 
   useEffect(() => {
     bookmarks.map((bookmark) => {
@@ -56,15 +62,26 @@ export default function Navbar() {
     setIsInputCategoryVisible(!isInputCategoryVisible);
   };
 
+  const toggleProfileModal = () => {
+    setIsProfileMenuVisible(!isProfileMenuVisible);
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  };
+
   return (
-    <nav>
+    <nav
+      className="
+          flex flex-col justify-between h-screen bg-black text-white p-8 "
+    >
       <Link href="/">
-        <Image src={Logo} alt="Logo" className="mx-auto h-auto" />
+        <Image src={Logo} alt="Logo" />
       </Link>
 
       <ul
         className="flex flex-col justify-center w-full h-full text-white 
-        p-4 space-y-4 bg-black px-8"
+         space-y-4 bg-black "
       >
         <li className="hover:bg-slate-700 px-4 py-2 rounded-xl cursor-pointer ">
           Home
@@ -101,7 +118,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-          <ul className="overflow-hidden">
+          <div className="overflow-hidden">
             <div className="ml-2 mb-4 flex flex-col items-start space-y-2 md:ml-4">
               {/* <button
                   className={`inline-block rounded-md px-2 text-left font-serif text-slate-400 outline-none focus:ring-2 focus:ring-slate-200 false 
@@ -143,7 +160,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-          </ul>
+          </div>
         </li>
 
         {/* All Category List  */}
@@ -211,6 +228,36 @@ export default function Navbar() {
             </div>
           </ul>
         </li>
+
+        <div>
+          <li
+            className="flex flex-row gap-6 hover:bg-slate-700 px-4 py-2 rounded-xl cursor-pointer "
+            onClick={toggleProfileModal}
+          >
+            <MdOutlinePerson2 className="h-6 w-6" />
+            Manav Malhotra
+          </li>
+          {/* make a profile menu which on click manav will appear a small div with settings link  */}
+          <div
+            className={`relative top-1 bg-black p-4 rounded-md shadow-lg 
+          ${isProfileMenuVisible ? "block" : "hidden"}`}
+          >
+            <ul className="flex flex-col space-y-2">
+              <Link
+                href="/settings"
+                className="hover:bg-slate-700 px-4 py-2 rounded-xl cursor-pointer"
+              >
+                Settings
+              </Link>
+              <li
+                className="hover:bg-slate-700 px-4 py-2 rounded-xl cursor-pointer"
+                onClick={handleLogout}
+              >
+                Logout
+              </li>
+            </ul>
+          </div>
+        </div>
       </ul>
     </nav>
   );
