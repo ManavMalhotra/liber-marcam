@@ -39,7 +39,7 @@ export default function Page() {
   };
 
   useEffect(() => {
-    // Check if user is logged in
+
     if (user == null || !user) {
       router.push("/login");
     } else {
